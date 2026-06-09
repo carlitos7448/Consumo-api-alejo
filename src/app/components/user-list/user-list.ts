@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user';
 
@@ -9,22 +9,21 @@ import { UserService } from '../../services/user';
   templateUrl: './user-list.html',
   styleUrl: './user-list.css',
 })
-export class UserList {
+export class UserList implements OnInit {
 
-  usuarios: any[] = [];
+  usuarios = signal<any[]>([]);
 
-  constructor(private userService: UserService){
+  constructor(private userService: UserService) {}
 
-  }
-
-  ngOnInit(){
-
-    this.userService.obtenerUsuarios().subscribe((data: any) => {
-
-      this.usuarios = data;
-
+  ngOnInit(): void {
+    this.userService.obtenerUsuarios().subscribe({
+      next: (data) => {
+        this.usuarios.set(data);
+      },
+      error: (err) => {
+        console.error('Error al obtener usuarios:', err);
+      }
     });
-
   }
 
 }

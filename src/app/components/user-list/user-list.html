@@ -1,17 +1,11 @@
 <h1>Lista de Usuarios</h1>
 
-<p>Cantidad de usuarios: {{ usuarios.length }}</p>
+<p>Cantidad de usuarios: {{ usuarios().length }}</p>
 
-<div *ngFor="let usuario of usuarios">
-
+<div *ngFor="let usuario of usuarios()">
   <h3>{{ usuario.name }}</h3>
-
   <p>Correo: {{ usuario.email }}</p>
-
   <p>Teléfono: {{ usuario.phone }}</p>
-
   <p>Ciudad: {{ usuario.address.city }}</p>
-
   <hr>
-
 </div>
