@@ -9,7 +9,7 @@ import { User } from '../../models/user';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './user-list.html',
-  styleUrl: './user-list.css',
+  styleUrls: ['./user-list.scss'],
 })
 export class UserList implements OnInit {
 

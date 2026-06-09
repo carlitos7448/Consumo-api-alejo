@@ -6,7 +6,7 @@ import { UserList } from './components/user-list/user-list';
   standalone: true,
   imports: [UserList],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.scss']
 })
 export class App {
 
