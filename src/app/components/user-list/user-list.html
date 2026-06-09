@@ -1,11 +1,32 @@
 <h1>Lista de Usuarios</h1>
 
-<p>Cantidad de usuarios: {{ usuarios().length }}</p>
+<input
+  type="text"
+  [(ngModel)]="terminoBusqueda"
+  placeholder="Buscar por nombre..."
+  class="busqueda"
+/>
 
-<div *ngFor="let usuario of usuarios()">
-  <h3>{{ usuario.name }}</h3>
-  <p>Correo: {{ usuario.email }}</p>
-  <p>Teléfono: {{ usuario.phone }}</p>
-  <p>Ciudad: {{ usuario.address.city }}</p>
-  <hr>
+<p *ngIf="cargando" class="mensaje cargando">Cargando usuarios...</p>
+
+<div *ngIf="error">
+  <p class="mensaje error">{{ error }}</p>
+  <button type="button" (click)="cargarUsuarios()">Reintentar</button>
+</div>
+
+<div *ngIf="!cargando && !error">
+  <p class="contador">Cantidad de usuarios: {{ usuariosFiltrados.length }}</p>
+
+  <div class="tarjetas">
+    <div class="tarjeta" *ngFor="let usuario of usuariosFiltrados">
+      <h3>{{ usuario.name }}</h3>
+      <p><strong>Correo:</strong> {{ usuario.email }}</p>
+      <p><strong>Teléfono:</strong> {{ usuario.phone }}</p>
+      <p><strong>Ciudad:</strong> {{ usuario.address.city }}</p>
+    </div>
+
+    <p *ngIf="usuariosFiltrados.length === 0" class="mensaje">
+      No se encontraron usuarios.
+    </p>
+  </div>
 </div>
