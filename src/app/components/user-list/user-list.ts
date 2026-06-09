@@ -11,7 +11,7 @@ import { UserService } from '../../services/user';
 })
 export class UserList {
 
-  usuarios:any[] = [];
+  usuarios: any[] = [];
 
   constructor(private userService: UserService){
 
@@ -19,7 +19,7 @@ export class UserList {
 
   ngOnInit(){
 
-    this.userService.obtenerUsuarios().subscribe((data:any) => {
+    this.userService.obtenerUsuarios().subscribe((data: any) => {
 
       this.usuarios = data;
 
